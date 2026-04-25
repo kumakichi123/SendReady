@@ -6,3 +6,5 @@ dev-server.log
 dev-server.err.log
 *.tsbuildinfo
 .env*
+
+.vercel
