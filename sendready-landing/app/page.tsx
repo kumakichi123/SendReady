@@ -1,15 +1,11 @@
 import {
   ArrowRight,
-  BarChart3,
   Building2,
   Check,
   ChevronDown,
-  CircleDollarSign,
   Download,
   FileText,
   Globe2,
-  ListChecks,
-  MailPlus,
   Plus,
   Send,
   Target,
@@ -29,14 +25,14 @@ const leads = [
 const worries = [
   ["営業先を探すのが大変", "条件に合う企業を探すだけで、時間が溶けていく。", "/generated-icons/lead-search.png"],
   ["企業ごとの調査が重い", "相手の事業や課題を調べるほど、文面作成まで進まない。", "/generated-icons/company-research.png"],
-  ["メールを毎回書き分けるのが面倒", "同じテンプレでは弱い。でも1社ずつ考えるのはきつい。", "/generated-icons/mail-writing.png"],
+  ["定型メールでは刺さらない", "同じテンプレでは弱い。でも1社ずつ考えるのはきつい。", "/generated-icons/mail-writing.png"],
   ["確認できる形に整えるのも手間", "リスト、件名、本文をばらばらに管理すると抜け漏れが起きる。", "/generated-icons/draft-check.png"],
 ];
 
 const steps = [
-  "あなたの会社情報やターゲット条件を入力",
+  "自社プロダクトとターゲット条件を入力",
   "AIが最適な営業先をリストアップ",
-  "各社に合わせた営業メールのドラフトを自動生成",
+  "営業先の事業に合わせたメール文を自動生成",
   "内容を確認して、利用できる形に整える",
 ];
 
@@ -212,6 +208,67 @@ function SampleFlow() {
   );
 }
 
+function QualityStory() {
+  const basicDetails = [
+    ["法人番号", "9000000000000"],
+    ["住所", "東京都渋谷区神南1丁目12-16"],
+    ["公式サイトURL", "https://sample.example"],
+    ["メール", "sales@sample.example"],
+    ["問い合わせフォーム", "あり"],
+    ["電話番号", "03-1234-5678"],
+  ];
+
+  const richDetails = [
+    ["事業内容", "美容室・整体院などの小規模店舗向けに、予約受付、顧客管理、リマインド通知をまとめて管理できるSaaSを提供。Web予約の導入支援にも力を入れている。"],
+    ["口コミの痛み", "初期設定でつまずく声が多く、営業時間やメニュー登録に迷う利用者がいる。問い合わせ後の返信待ち時間が長いという不満も見られる。"],
+  ];
+
+  return (
+    <section className="quality-story reveal reveal-quality">
+      <div className="quality-copy">
+        <p className="quality-kicker">既存の営業先リストとは</p>
+        <h2>質が<strong>違う。</strong></h2>
+        <p className="quality-lead">連絡先だけでなく、事業内容や口コミの痛みまで見える営業リストへ。</p>
+        <div className="quality-drama" aria-label="先行登録の理由">
+          <span>初期は詳細画面が少ない...</span>
+          <b>だからこそ</b>
+          <strong>先行30社には<br /><em>永久割引。</em></strong>
+        </div>
+        <p className="quality-callout">既存の営業先リストにはない<br />詳細情報まで表示！</p>
+      </div>
+
+      <div className="quality-visual" aria-label="企業詳細画面のデモ">
+        <article className="quality-detail-card">
+          <div className="quality-card-head">
+            <FileText size={22} />
+            <span>詳細画面デモ</span>
+          </div>
+          <h3>株式会社サンプル</h3>
+          <p className="quality-card-note">営業先の表面的な連絡先だけでなく、メールの切り口になる情報まで集約。</p>
+          <dl>
+            {basicDetails.map(([label, value]) => (
+              <div key={label}>
+                <dt>{label}</dt>
+                <dd>{value}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="quality-rich-box">
+            <dl>
+              {richDetails.map(([label, value]) => (
+                <div key={label}>
+                  <dt>{label}</dt>
+                  <dd>{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </article>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   return (
     <main id="top">
@@ -221,7 +278,6 @@ export default function Home() {
         <nav>
           <a href="#features">特徴</a>
           <a href="#howto">使い方</a>
-          <a href="#pricing">料金</a>
           <a href="#faq">FAQ</a>
           <a className="header-cta" href="#signup">30社限定で先行登録する <ArrowRight size={17} /></a>
         </nav>
@@ -230,11 +286,16 @@ export default function Home() {
       <section className="hero">
         <div className="hero-copy reveal reveal-hero-copy">
           <h1>メール営業を<br /><strong>AI</strong>で一気通貫。</h1>
-          <p>企業情報やターゲット条件を入力するだけで、AIが営業先をリストアップし、相手に合わせた営業メールのドラフトまで生成。確認しながら、安心して活用できます。</p>
+          <p>自社プロダクトと営業先の事業をもとに、AIが相手に刺さる営業メールを生成。営業先リスト作成から文面づくりまで、圧倒的に時短します。</p>
+          <div className="hero-badges" aria-label="SendReadyの募集情報">
+            <span>6月リリース</span>
+            <span>先行モニター30社</span>
+            <span>永久優待価格</span>
+          </div>
           <div className="hero-actions">
             <a className="primary-cta" href="#signup">30社限定で先行登録する <ArrowRight /></a>
           </div>
-          <small><Check size={15} />先着30社限定・優待価格でご案内</small>
+          <small><Check size={15} />先行モニターには永久優待価格でご案内</small>
         </div>
 
         <div className="hero-stage reveal reveal-hero-stage">
@@ -244,7 +305,7 @@ export default function Home() {
 
       <section className="worries reveal reveal-worries">
         <div className="section-title">
-          <h2>営業メールの作成、<br /><span>面倒じゃありませんか？</span></h2>
+          <h2>定型メールの時代は、<br /><span>もう終わり。</span></h2>
         </div>
         <div className="worry-path" aria-label="営業メール作成の面倒な作業">
           <svg viewBox="0 0 900 430" preserveAspectRatio="none" aria-hidden="true">
@@ -265,7 +326,7 @@ export default function Home() {
           <WorkflowSketch />
         </div>
         <div className="flow-copy">
-          <h2>SendReadyなら、<br />営業メール作成をもっと<br /><strong>スマートに。</strong></h2>
+          <h2>相手の事業に合わせて、<br />刺さる営業メールを<br /><strong>AIが生成。</strong></h2>
           <ol id="howto">
             {steps.map((step, index) => (
               <li key={step}><span>{index + 1}</span>{step}</li>
@@ -275,19 +336,7 @@ export default function Home() {
         </div>
       </section>
 
-      <SampleFlow />
-
-      <section className="pricing-band reveal reveal-pricing" id="pricing">
-        <div>
-          <span>料金</span>
-          <h2>使った分だけの<br /><strong>従量課金</strong>ベース</h2>
-        </div>
-        <div className="pricing-notes">
-          <p><CircleDollarSign />初期費用なし</p>
-          <p><ListChecks />必要な分だけ利用</p>
-        </div>
-        <a href="#signup">30社限定で先行登録する <ArrowRight size={18} /></a>
-      </section>
+      <QualityStory />
 
       <section className="faq reveal reveal-faq" id="faq">
         <h2>よくあるご質問</h2>
@@ -302,7 +351,7 @@ export default function Home() {
       </section>
 
       <section className="signup-line reveal reveal-signup" id="signup">
-        <h2>先行登録者には、限定価格でご案内。</h2>
+        <h2>先行モニターには、永久優待価格でご案内。</h2>
         <SignupForm />
       </section>
 
@@ -312,8 +361,6 @@ export default function Home() {
           <a href="#features">特徴</a>
           <span>/</span>
           <a href="#howto">使い方</a>
-          <span>/</span>
-          <a href="#pricing">料金</a>
           <span>/</span>
           <a href="#faq">FAQ</a>
         </nav>
