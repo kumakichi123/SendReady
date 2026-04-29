@@ -1690,13 +1690,14 @@ details p {
 
 .signup-modal {
   align-items: center;
-  background: rgba(7, 19, 63, 0.34);
+  backdrop-filter: blur(3px);
+  background: rgba(246, 248, 255, 0.68);
   display: flex;
   inset: 0;
   justify-content: center;
   padding: 24px;
   position: fixed;
-  z-index: 20;
+  z-index: 40;
 }
 
 .signup-modal__panel {
@@ -1738,6 +1739,20 @@ details p {
   margin-bottom: 14px;
 }
 
+.signup-modal__icon.is-spinning {
+  animation: modal-spin 0.9s linear infinite;
+}
+
+.signup-modal__icon.is-error {
+  color: #b13b48;
+}
+
+@keyframes modal-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .signup-modal__eyebrow {
   color: #5147e2;
   font-size: 13px;
@@ -1771,6 +1786,12 @@ details p {
   font-weight: 900;
   min-height: 48px;
   padding: 0 26px;
+}
+
+.signup-modal__button:disabled,
+.signup-line .signup-modal__button:disabled {
+  cursor: wait;
+  opacity: 0.78;
 }
 
 footer {

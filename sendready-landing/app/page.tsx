@@ -326,8 +326,8 @@ function Strengths() {
     ],
     [
       "03",
-      "先行モニター受付中",
-      "先行モニターは初期無料。その後も正式版を永久優待価格でご案内予定。",
+      "先行30社限定スタータープラン",
+      "3か月無料。その後も正式版を永久半額価格で利用可能。",
     ],
   ];
 
@@ -426,13 +426,14 @@ export default function Home() {
           <p>AIが1社ずつ公開情報を横断調査し、営業できる理由まで整理。営業先の抽出から提案の切り口、メール文面作成まで一気通貫で支援します。</p>
           <div className="hero-badges" aria-label="SendReadyの募集情報">
             <span>6月リリース</span>
-            <span>先行モニター30社</span>
-            <span>永久優待価格</span>
+            <span>先行30社限定</span>
+            <span>3か月無料</span>
+            <span>永久半額価格</span>
           </div>
           <div className="hero-actions">
             <a className="primary-cta" href="#signup">30社限定で先行登録する <ArrowRight /></a>
           </div>
-          <small><Check size={15} />先行モニターには永久優待価格でご案内</small>
+          <small><Check size={15} />先行30社限定スタータープランは3か月無料。その後も永久半額価格</small>
         </div>
 
         <div className="hero-stage reveal reveal-hero-stage">
@@ -490,7 +491,7 @@ export default function Home() {
       </section>
 
       <section className="signup-line reveal reveal-signup" id="signup">
-        <h2>先行モニターには、永久優待価格でご案内。</h2>
+        <h2>先行30社限定スタータープラン。3か月無料、その後も永久半額価格。</h2>
         <SignupForm />
       </section>
 
