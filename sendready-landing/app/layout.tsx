@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "SendReady",
-  description: "営業先リスト作成から営業メール作成まで、AIで一気通貫。",
+  description: "AIエージェント内蔵の営業SaaS。営業リスト作成から営業メール文面作成まで。",
 };
 
 export default function RootLayout({

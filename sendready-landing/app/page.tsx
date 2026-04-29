@@ -2,14 +2,18 @@ import {
   ArrowRight,
   Building2,
   Check,
+  ChevronLeft,
   ChevronDown,
+  ChevronRight,
   Download,
   FileText,
   Globe2,
   Plus,
+  Search,
   Send,
   Target,
   UsersRound,
+  X,
 } from "lucide-react";
 import { AnimationBoot } from "./AnimationBoot";
 import { SignupForm } from "./SignupForm";
@@ -20,6 +24,17 @@ const leads = [
   ["デモ株式会社フューチャーラボ", "info@futurelab.example", "IT・SaaS", "200名"],
   ["デモ株式会社デジタルシフト", "hello@digitalshift.example", "システム開発", "150名"],
   ["デモ株式会社グローステック", "contact@growthtech.example", "SaaS", "90名"],
+];
+
+const previewCompanies = [
+  ["デモ株式会社ミナトクラフト", "東京都 中央区"],
+  ["デモ株式会社ノヴァリンク", "東京都 渋谷区"],
+  ["デモ株式会社アーバンリーフ", "東京都 港区"],
+  ["デモ株式会社ライトウェーブ", "東京都 新宿区"],
+  ["デモ東都デジタル株式会社", "東京都 台東区"],
+  ["デモ株式会社グランテラス", "東京都 目黒区"],
+  ["デモ株式会社オルビット", "東京都 品川区"],
+  ["デモヒカリソース株式会社", "東京都 中央区"],
 ];
 
 const worries = [
@@ -139,9 +154,98 @@ function ProductUI({ compact = false }: { compact?: boolean }) {
 
 function HeroProductPreview() {
   return (
-    <div className="hero-product-preview">
-      <LeadMock />
-      <MailMock />
+    <div className="hero-product-preview admin-preview" aria-label="SendReadyの営業先検索画面デモ">
+      <div className="admin-preview__main">
+        <div className="admin-preview__filters">
+          <div className="admin-preview__search">
+            <Search size={20} />
+            <span>会社名・地域・キーワードで検索</span>
+          </div>
+          <div className="admin-preview__select">
+            <small>地域</small>
+            <b>東京都</b>
+            <ChevronDown size={18} />
+          </div>
+          <div className="admin-preview__select">
+            <small>業種</small>
+            <b>指定なし</b>
+            <ChevronDown size={18} />
+          </div>
+          <button>検索</button>
+          {["従業員数", "資本金", "連絡先", "営業切り口", "採用状況"].map((label) => (
+            <div className="admin-preview__select compact" key={label}>
+              <small>{label}</small>
+              <b>指定なし</b>
+              <ChevronDown size={16} />
+            </div>
+          ))}
+        </div>
+
+        <div className="admin-preview__workspace">
+          <section className="admin-preview__list" aria-label="営業先候補リスト">
+            <div className="admin-preview__list-head">
+              <strong>2,000<br />件</strong>
+              <div className="admin-preview__pager">
+                <span><ChevronLeft size={17} /></span>
+                <b>1</b>
+                <em>...</em>
+                <b className="is-current">3</b>
+                <b>4</b>
+                <em>...</em>
+                <b>10</b>
+                <span><ChevronRight size={17} /></span>
+              </div>
+              <button>リスト作成</button>
+            </div>
+            <div className="admin-preview__table">
+              <div className="admin-preview__table-head">
+                <span></span>
+                <span>会社名</span>
+                <span>所在地</span>
+              </div>
+              {previewCompanies.map(([name, area]) => (
+                <div className="admin-preview__row" key={name}>
+                  <i />
+                  <b>{name}</b>
+                  <span>{area}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="admin-preview__detail" aria-label="企業詳細パネル">
+            <div className="admin-preview__detail-head">
+              <div>
+                <h3>株式会社サンプル</h3>
+                <p>東京都 中央区</p>
+              </div>
+              <X size={20} />
+            </div>
+            <div className="admin-preview__metrics">
+              <div><span>従業員数</span><b>84名</b></div>
+              <div><span>資本金</span><b>1,600万</b></div>
+              <div><span>設立</span><b>2016</b></div>
+              <div><span>連絡先</span><b>2件</b></div>
+            </div>
+            <div className="admin-preview__tabs">
+              <span>企業情報</span>
+              <span>連絡先</span>
+              <b>営業メモ</b>
+              <span>採用情報</span>
+            </div>
+            <div className="admin-preview__info">
+              <h4>営業メモ</h4>
+              <dl>
+                <div><dt>営業切り口</dt><dd>採用強化・問い合わせ対応の効率化</dd></div>
+                <div><dt>口コミの悩み</dt><dd>初回返信の遅さ、担当者不在時の対応漏れ、導入後サポートへの不満が複数あり。</dd></div>
+                <div><dt>サイト状況</dt><dd>料金表と導入事例はあるが、比較検討向けのFAQが少ない。</dd></div>
+                <div><dt>提案メモ</dt><dd>問い合わせ対応と営業リスト整備を同時に改善できる訴求が有効。</dd></div>
+                <div><dt>最終確認日</dt><dd>2026-04-28</dd></div>
+              </dl>
+            </div>
+          </section>
+        </div>
+      </div>
     </div>
   );
 }
@@ -208,13 +312,45 @@ function SampleFlow() {
   );
 }
 
+function Strengths() {
+  const strengths = [
+    [
+      "01",
+      "圧倒的高品質",
+      "1社ずつAIがサイト・口コミ・公開情報を横断調査。強み・弱み・営業できる理由まで精査。",
+    ],
+    [
+      "02",
+      "AIエージェント内蔵",
+      "自社情報をもとに、営業先の抽出から提案の切り口整理、営業文面作成まで対応。",
+    ],
+    [
+      "03",
+      "先行モニター受付中",
+      "先行モニターは初期無料。その後も正式版を永久優待価格でご案内予定。",
+    ],
+  ];
+
+  return (
+    <section className="strengths-section reveal reveal-strengths" id="features" aria-label="SendReadyの強み">
+      {strengths.map(([number, title, text]) => (
+        <article key={number}>
+          <span>{number}</span>
+          <h2>{title}</h2>
+          <p>{text}</p>
+        </article>
+      ))}
+    </section>
+  );
+}
+
 function QualityStory() {
   const basicDetails = [
     ["法人番号", "9000000000000"],
     ["住所", "東京都渋谷区神南1丁目12-16"],
     ["公式サイトURL", "https://sample.example"],
     ["メール", "sales@sample.example"],
-    ["問い合わせフォーム", "あり"],
+    ["問い合わせフォームURL", "https://sample.example/contact"],
     ["電話番号", "03-1234-5678"],
   ];
 
@@ -228,7 +364,7 @@ function QualityStory() {
       <div className="quality-copy">
         <p className="quality-kicker">既存の営業先リストとは</p>
         <h2>質が<strong>違う。</strong></h2>
-        <p className="quality-lead">連絡先だけでなく、事業内容や口コミの痛みまで見える営業リストへ。</p>
+        <p className="quality-lead">事業内容や口コミに加え、営業の切り口や採用情報まで見える営業リストへ。</p>
         <div className="quality-drama" aria-label="先行登録の理由">
           <span>初期は詳細画面が少ない...</span>
           <b>だからこそ</b>
@@ -285,8 +421,9 @@ export default function Home() {
 
       <section className="hero">
         <div className="hero-copy reveal reveal-hero-copy">
-          <h1>メール営業を<br /><strong>AI</strong>で一気通貫。</h1>
-          <p>自社プロダクトと営業先の事業をもとに、AIが相手に刺さる営業メールを生成。営業先リスト作成から文面づくりまで、圧倒的に時短します。</p>
+          <p className="hero-kicker">営業リスト作成からメール文面作成まで</p>
+          <h1>100社分の営業を、<br /><strong>数時間から数分へ。</strong></h1>
+          <p>AIが1社ずつ公開情報を横断調査し、営業できる理由まで整理。営業先の抽出から提案の切り口、メール文面作成まで一気通貫で支援します。</p>
           <div className="hero-badges" aria-label="SendReadyの募集情報">
             <span>6月リリース</span>
             <span>先行モニター30社</span>
@@ -300,6 +437,25 @@ export default function Home() {
 
         <div className="hero-stage reveal reveal-hero-stage">
           <HeroProductPreview />
+        </div>
+      </section>
+
+      <Strengths />
+
+      <QualityStory />
+
+      <section className="smart-flow reveal reveal-flow">
+        <div className="flow-visual">
+          <WorkflowSketch />
+        </div>
+        <div className="flow-copy">
+          <h2>相手の事業に合わせて、<br />刺さる営業メールを<br /><strong>AIが生成。</strong></h2>
+          <ol id="howto">
+            {steps.map((step, index) => (
+              <li key={step}><span>{index + 1}</span>{step}</li>
+            ))}
+          </ol>
+          <p><Check size={16} />内容を確認してから、安心して活用できます。</p>
         </div>
       </section>
 
@@ -320,23 +476,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      <section className="smart-flow reveal reveal-flow" id="features">
-        <div className="flow-visual">
-          <WorkflowSketch />
-        </div>
-        <div className="flow-copy">
-          <h2>相手の事業に合わせて、<br />刺さる営業メールを<br /><strong>AIが生成。</strong></h2>
-          <ol id="howto">
-            {steps.map((step, index) => (
-              <li key={step}><span>{index + 1}</span>{step}</li>
-            ))}
-          </ol>
-          <p><Check size={16} />内容を確認してから、安心して活用できます。</p>
-        </div>
-      </section>
-
-      <QualityStory />
 
       <section className="faq reveal reveal-faq" id="faq">
         <h2>よくあるご質問</h2>
